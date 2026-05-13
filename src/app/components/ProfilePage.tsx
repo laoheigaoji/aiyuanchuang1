@@ -173,40 +173,40 @@ export default function ProfilePage({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white p-4 pb-20">
-      <div className="max-w-4xl mx-auto space-y-6">
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white p-2 pb-16">
+      <div className="max-w-4xl mx-auto space-y-3">
         {/* User Info Card */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl shadow-lg p-6 text-white relative">
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-sm p-4 text-white relative">
           <button 
             onClick={() => setIsCustomerServiceOpen(true)}
-            className="absolute top-4 right-4 p-2 bg-white/20 hover:bg-white/30 rounded-xl transition-all flex items-center justify-center border border-white/10"
+            className="absolute top-3 right-3 p-1.5 bg-white/20 hover:bg-white/30 rounded-lg transition-all flex items-center justify-center border border-white/10"
             title="在线客服"
           >
-            <Headset className="size-5" />
+            <Headset className="size-4" />
           </button>
           
-          <div className="flex items-center gap-4 mb-6">
-            <img src={avatarUrl} alt={nickname} className="size-16 rounded-full border-2 border-white shrink-0" />
+          <div className="flex items-center gap-3 mb-4">
+            <img src={avatarUrl} alt={nickname} className="size-12 rounded-full border-2 border-white shrink-0" />
             <div className="min-w-0">
-              <h2 className="text-2xl font-bold truncate">{nickname && nickname.length > 5 ? nickname.substring(0, 5) + '...' : nickname}</h2>
-              <p className="text-sm opacity-90">个人中心</p>
+              <h2 className="text-xl font-bold truncate">{nickname && nickname.length > 5 ? nickname.substring(0, 5) + '...' : nickname}</h2>
+              <p className="text-xs opacity-90">个人中心</p>
             </div>
           </div>
           
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 flex items-center divide-x divide-white/20">
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 flex items-center divide-x divide-white/20">
             <div className="flex-1 text-center">
-              <p className="text-sm opacity-90 mb-1">可用文字额度</p>
-              <p className="text-3xl font-bold tracking-tight">{balance.toLocaleString()}</p>
+              <p className="text-xs opacity-90 mb-0.5">可用文字额度</p>
+              <p className="text-2xl font-bold tracking-tight">{balance.toLocaleString()}</p>
             </div>
             <div className="flex-1 text-center">
-              <p className="text-sm opacity-90 mb-1">可用鉴图次数</p>
-              <p className="text-3xl font-bold tracking-tight">{imageBalance?.toLocaleString() || 0} <span className="text-xl">次</span></p>
+              <p className="text-xs opacity-90 mb-0.5">可用鉴图次数</p>
+              <p className="text-2xl font-bold tracking-tight">{imageBalance?.toLocaleString() || 0} <span className="text-base">次</span></p>
             </div>
           </div>
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+        <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
           <div className="grid grid-cols-4 bg-gray-50/50">
             {[
               { id: 'packages', label: '购买套餐' },
@@ -217,7 +217,7 @@ export default function ProfilePage({
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`py-4 text-xs sm:text-sm font-bold transition-all relative ${
+                className={`py-3 text-xs font-bold transition-all relative ${
                   activeTab === tab.id
                     ? 'text-blue-600'
                     : 'text-gray-500 hover:text-gray-700'
@@ -225,13 +225,13 @@ export default function ProfilePage({
               >
                 {tab.label}
                 {activeTab === tab.id && (
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-1 bg-blue-600 rounded-full" />
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-blue-600 rounded-full" />
                 )}
               </button>
             ))}
           </div>
 
-          <div className="p-6">
+          <div className="p-4">
             {loading && (
               <div className="flex justify-center py-20">
                 <Loader2 className="size-8 text-blue-600 animate-spin" />
@@ -242,49 +242,49 @@ export default function ProfilePage({
               <>
                 {/* Packages Tab */}
                 {activeTab === 'packages' && (
-                  <div className="space-y-6">
+                  <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <h3 className="font-bold text-gray-900 flex items-center gap-2">
-                         <CreditCard className="size-5 text-blue-600" />
+                      <h3 className="font-bold text-gray-900 flex items-center gap-1.5 text-sm">
+                         <CreditCard className="size-4 text-blue-600" />
                          购买资源包
                       </h3>
-                      <div className="flex bg-gray-100 p-1 rounded-xl">
+                      <div className="flex bg-gray-100 p-0.5 rounded-lg">
                         <button 
                           onClick={() => setPkgCategory('text')}
-                          className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${pkgCategory === 'text' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500'}`}
+                          className={`px-3 py-1 rounded-md text-xs font-bold transition-all ${pkgCategory === 'text' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500'}`}
                         >
                           文字包
                         </button>
                         <button 
                           onClick={() => setPkgCategory('image')}
-                          className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${pkgCategory === 'image' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500'}`}
+                          className={`px-3 py-1 rounded-md text-xs font-bold transition-all ${pkgCategory === 'image' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500'}`}
                         >
                           图片包
                         </button>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {packages
                         .filter(p => p.category === pkgCategory || (!p.category && pkgCategory === 'text'))
                         .map((pkg) => (
                         <div
                           key={pkg._id}
                           onClick={() => handlePurchase(pkg)}
-                          className={`relative border-2 rounded-2xl p-5 transition-all cursor-pointer group hover:shadow-md ${
-                            pkg.recommended ? 'border-blue-500 bg-blue-50 shadow-sm' : 'border-gray-100 bg-white hover:border-gray-300'
+                          className={`relative border rounded-xl p-4 transition-all cursor-pointer group hover:shadow-sm ${
+                            pkg.recommended ? 'border-blue-400 bg-blue-50 shadow-sm' : 'border-gray-100 bg-white hover:border-gray-300'
                           }`}
                         >
                           {pkg.recommended && (
-                            <div className="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-sm">
+                            <div className="absolute top-0 right-0 bg-blue-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-bl-lg shadow-sm">
                               推荐
                             </div>
                           )}
                           <div className="flex flex-col h-full">
-                            <h4 className="font-bold text-lg text-gray-900 mb-1 group-hover:text-blue-600 transition">
+                            <h4 className="font-bold text-sm text-gray-900 mb-0.5 group-hover:text-blue-600 transition">
                               {pkg.name}
                             </h4>
-                            <p className="text-xs text-gray-500 mb-4">
+                            <p className="text-[10px] text-gray-500 mb-3">
                               {pkgCategory === 'image' 
                                 ? `${pkg.chars / 500} 次图片鉴定` 
                                 : `${pkg.chars.toLocaleString()} 字符 ・ 约 ${Math.floor(pkg.chars / 1000)} 次检测`
@@ -292,16 +292,16 @@ export default function ProfilePage({
                             </p>
                             <div className="mt-auto flex items-end justify-between">
                               <div className="flex flex-col">
-                                <div className="flex items-baseline gap-1">
-                                  <span className="text-sm font-bold text-blue-600">¥</span>
-                                  <span className="text-2xl font-black text-blue-600 tracking-tight">{pkg.price}</span>
+                                <div className="flex items-baseline gap-0.5">
+                                  <span className="text-xs font-bold text-blue-600">¥</span>
+                                  <span className="text-lg font-black text-blue-600 tracking-tight">{pkg.price}</span>
                                 </div>
                                 {pkgCategory === 'image' && (
-                                  <span className="text-[10px] font-bold text-gray-400">单价: ¥{(pkg.price / (pkg.chars / 500)).toFixed(2)} / 次</span>
+                                  <span className="text-[9px] font-bold text-gray-400">单价: ¥{(pkg.price / (pkg.chars / 500)).toFixed(2)} / 次</span>
                                 )}
                               </div>
-                              <div className="bg-blue-600 text-white size-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-lg shadow-blue-200">
-                                <ChevronRight className="size-5" />
+                              <div className="bg-blue-600 text-white size-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-sm">
+                                <ChevronRight className="size-4" />
                               </div>
                             </div>
                           </div>
@@ -322,14 +322,14 @@ export default function ProfilePage({
                       </div>
                     ) : (
                       packageRecords.map((record, index) => (
-                        <div key={index} className="bg-gray-50 border border-gray-100 rounded-2xl p-4 group hover:bg-white hover:border-gray-200 transition-all">
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="font-bold text-gray-900">
+                        <div key={index} className="bg-gray-50 border border-gray-100 rounded-lg p-3 group hover:bg-white hover:border-gray-200 transition-all">
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="font-bold text-gray-900 text-sm">
                               {record.packageName}
                             </span>
-                            <span className="text-blue-600 font-black">¥{record.price}</span>
+                            <span className="text-blue-600 font-bold text-sm">¥{record.price}</span>
                           </div>
-                          <div className="flex items-center justify-between text-xs text-gray-500 gap-2">
+                          <div className="flex items-center justify-between text-[10px] text-gray-500 gap-2">
                             <span className="font-mono truncate max-w-[150px] sm:max-w-none break-all" title={record.orderId}>#{record.orderId}</span>
                             <span className="shrink-0">{new Date(record.timestamp).toLocaleString('zh-CN')}</span>
                           </div>
@@ -350,15 +350,15 @@ export default function ProfilePage({
                       </div>
                     ) : (
                       usageDetails.map((detail, index) => (
-                        <div key={index} className="bg-gray-50 border border-gray-100 rounded-2xl p-4 flex items-center justify-between group hover:bg-white transition">
+                        <div key={index} className="bg-gray-50 border border-gray-100 rounded-lg p-3 flex items-center justify-between group hover:bg-white transition">
                           <div>
-                            <p className="font-bold text-gray-900 text-sm mb-1">{detail.description}</p>
-                            <p className="text-[10px] text-gray-400 uppercase tracking-wider">
+                            <p className="font-bold text-gray-900 text-xs mb-0.5">{detail.description}</p>
+                            <p className="text-[9px] text-gray-400 uppercase tracking-wider">
                               {new Date(detail.timestamp).toLocaleString('zh-CN')}
                             </p>
                           </div>
                           <span
-                             className={`font-black text-lg ${
+                             className={`font-black text-sm ${
                                detail.type === 'recharge' ? 'text-green-500' : 'text-red-500'
                              }`}
                           >
@@ -413,30 +413,30 @@ export default function ProfilePage({
                         }
 
                         return (
-                          <div key={index} className="bg-gray-50 border border-gray-100 rounded-2xl p-4 hover:shadow-sm transition">
-                            <div className="flex items-center justify-between mb-3">
-                              <span className="text-[10px] text-gray-400 font-medium">
+                          <div key={index} className="bg-gray-50 border border-gray-100 rounded-lg p-3 hover:shadow-sm transition">
+                            <div className="flex items-center justify-between mb-2">
+                              <span className="text-[9px] text-gray-400 font-medium">
                                 {new Date(record.timestamp).toLocaleString('zh-CN')}
                               </span>
                               <div
-                                className={`text-[10px] uppercase font-black px-2 py-1 rounded-full ${statusColor}`}
+                                className={`text-[9px] uppercase font-bold px-1.5 py-0.5 rounded-full ${statusColor}`}
                               >
                                 {statusText}
                               </div>
                             </div>
-                            <div className="text-xs text-gray-700 mb-3 bg-white p-2 rounded-lg border border-gray-50 overflow-hidden text-ellipsis">
+                            <div className="text-[10px] text-gray-700 mb-2 bg-white p-2 rounded-md border border-gray-50 overflow-hidden text-ellipsis">
                               {record.type === 'IMAGE_AIGC' ? (
-                                <div className="flex items-center gap-2 text-indigo-600 font-medium">
-                                  <ImageIcon className="size-4" />
+                                <div className="flex items-center gap-1 text-indigo-600 font-medium">
+                                  <ImageIcon className="size-3" />
                                   <span>[图片检测] {record.content === '[Base64 Image]' ? '本地上传图片' : '网络图片'}</span>
                                 </div>
                               ) : (
                                 <p className="italic line-clamp-2">"{record.content}..."</p>
                               )}
                             </div>
-                            <div className="flex items-center justify-between text-[11px] font-bold text-gray-500">
-                              <span className="flex items-center gap-1">
-                                 <History className="size-3" />
+                            <div className="flex items-center justify-between text-[10px] font-bold text-gray-500">
+                              <span className="flex items-center gap-0.5">
+                                 <History className="size-2.5" />
                                  {record.type === 'IMAGE_AIGC' ? '1 次' : `${record.charCount} 字符`} ・ {record.type === 'IMAGE_AIGC' ? '图片鉴定' : (isAIGC ? 'AI 识别' : '内容审核')}
                               </span>
                               <span className="text-blue-600">

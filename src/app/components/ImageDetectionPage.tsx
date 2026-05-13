@@ -114,22 +114,22 @@ export default function ImageDetectionPage({ balance, imageBalance, onBalanceUpd
         }
       `}</style>
       <div className="max-w-4xl mx-auto space-y-6">
-        <div className="bg-white rounded-2xl shadow-lg p-6">
+        <div className="bg-white rounded-xl shadow-sm p-4">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900">AI 图片生成率检测</h1>
-            <p className="text-sm text-gray-600 mt-1">一键鉴定图片是否由AI生成，智能分析图片真伪</p>
+            <h1 className="text-xl font-bold text-gray-900">AI 图片生成率检测</h1>
+            <p className="text-xs text-gray-600 mt-1">一键鉴定图片是否由AI生成，智能分析图片真伪</p>
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-lg p-6">
-          <div className="space-y-4">
+        <div className="bg-white rounded-xl shadow-sm p-4">
+          <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <label className="font-semibold text-gray-900">上传待检测图片</label>
-              <div className="flex items-center gap-4">
+              <label className="font-semibold text-sm text-gray-900">上传待检测图片</label>
+              <div className="flex items-center gap-2">
                 {image && (
                   <button
                     onClick={handleClear}
-                    className="text-sm text-gray-600 hover:text-gray-900"
+                    className="text-xs text-gray-600 hover:text-gray-900"
                   >
                     清空
                   </button>
@@ -137,7 +137,7 @@ export default function ImageDetectionPage({ balance, imageBalance, onBalanceUpd
               </div>
             </div>
 
-            <div className="relative aspect-square max-w-lg mx-auto w-full bg-gray-50 rounded-xl overflow-hidden flex flex-col items-center justify-center border-2 border-gray-200 group">
+            <div className="relative aspect-video max-w-sm mx-auto w-full bg-gray-50 rounded-lg overflow-hidden flex flex-col items-center justify-center border-2 border-gray-200 group">
               {image ? (
                 <>
                   <img src={image} alt="Preview" className="w-full h-full object-cover" />
@@ -171,12 +171,12 @@ export default function ImageDetectionPage({ balance, imageBalance, onBalanceUpd
             <button
               onClick={handleDetect}
               disabled={loading || !image}
-              className="w-full bg-blue-600 text-white py-4 rounded-xl font-semibold hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 text-sm"
             >
               {loading ? (
                 <>
-                  <Loader2 className="size-5 animate-spin" />
-                  正在深度扫图分析中...
+                  <Loader2 className="size-4 animate-spin" />
+                  正在深度扫图分析...
                 </>
               ) : (
                 !image ? '请选择图片上传' : `开始原创性检测（扣除 1 次）`
@@ -187,39 +187,39 @@ export default function ImageDetectionPage({ balance, imageBalance, onBalanceUpd
 
         {/* Tencent Cloud API Badge */}
         {!result && !loading && (
-          <div className="mt-8 text-center text-gray-500 text-sm flex flex-col items-center gap-2">
-            <img src="https://wxqun988.vxjuejin.com/%E8%85%BE%E8%AE%AF%E4%BA%91.png" className="h-6 opacity-60" alt="Tencent Cloud" />
+          <div className="mt-4 text-center text-gray-500 text-xs flex flex-col items-center gap-1">
+            <img src="https://wxqun988.vxjuejin.com/%E8%85%BE%E8%AE%AF%E4%BA%91.png" className="h-5 opacity-60" alt="Tencent Cloud" />
             <p>采用腾讯云API，准确 & 稳定</p>
           </div>
         )}
 
         {/* Result Area */}
         {result && (
-          <div ref={resultRef} className="bg-white rounded-2xl shadow-xl p-6 border-2 border-blue-50 animate-in fade-in zoom-in duration-300">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-black text-gray-900">检测报告</h3>
+          <div ref={resultRef} className="bg-white rounded-xl shadow-sm p-4 border-2 border-blue-50 animate-in fade-in zoom-in duration-300">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-black text-gray-900">检测报告</h3>
               <button 
                 onClick={() => setIsModalOpen(true)}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-lg text-xs font-bold hover:bg-blue-100 transition-colors"
+                className="flex items-center gap-1 px-2 py-1 bg-blue-50 text-blue-600 rounded-md text-xs font-bold hover:bg-blue-100 transition-colors"
               >
-                <HelpCircle className="size-3.5" />
+                <HelpCircle className="size-3" />
                 评分标准
               </button>
             </div>
 
-            <div className="text-center p-8 bg-gray-50 rounded-xl mb-6">
-              <div className={`flex items-center justify-center gap-3 mb-3 ${getResultColor(result.aiScore)}`}>
+            <div className="text-center p-6 bg-gray-50 rounded-lg mb-4">
+              <div className={`flex items-center justify-center gap-2 mb-2 ${getResultColor(result.aiScore)}`}>
                 {getResultIcon(result.aiScore)}
-                <span className="text-5xl font-bold">{result.aiScore}%</span>
+                <span className="text-4xl font-bold">{result.aiScore}%</span>
               </div>
-              <p className="text-xl font-semibold text-gray-900 mb-1">AI 生成概率</p>
-              <p className={`text-lg font-medium ${getResultColor(result.aiScore)}`}>
+              <p className="text-lg font-semibold text-gray-900 mb-0.5">AI 生成概率</p>
+              <p className={`text-base font-medium ${getResultColor(result.aiScore)}`}>
                 {getConclusion(result.aiScore)}
               </p>
             </div>
 
-            <div className="p-4 bg-blue-50/50 rounded-xl border border-blue-100 text-sm text-blue-800 flex items-start gap-3">
-              <AlertCircle className="size-5 shrink-0 mt-0.5" />
+            <div className="p-3 bg-blue-50/50 rounded-lg border border-blue-100 text-xs text-blue-800 flex items-start gap-2">
+              <AlertCircle className="size-4 shrink-0 mt-0.5" />
               <p>系统已完成深度图像特征提取与比对，结果仅供参考。</p>
             </div>
           </div>

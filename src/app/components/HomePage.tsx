@@ -180,7 +180,7 @@ export default function HomePage({
                 onChange={(e) => setText(e.target.value)}
                 placeholder="请输入 200-2000 字符的文本内容，系统将调用腾讯云服务分析其 AI 生成概率..."
                 maxLength={2000}
-                className="w-full h-96 p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none resize-none text-gray-900 pr-10 relative z-0 text-sm"
+                className="w-full h-64 p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none resize-none text-gray-900 pr-10 relative z-0 text-base"
                 disabled={loading}
               />
               {!loading && (
